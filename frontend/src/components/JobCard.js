@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const JobCard = ({ job, showInterestButton, onExpressInterest }) => {
+const JobCard = ({ job, showInterestButton, onExpressInterest, children }) => {
   return (
     <Card sx={{ marginBottom: 2 }}>
       <CardContent>
@@ -29,6 +29,9 @@ const JobCard = ({ job, showInterestButton, onExpressInterest }) => {
         >
           View Details
         </Button>
+
+        {/* ✅ This will render the Delete button or any additional UI */}
+        {children}
       </CardContent>
     </Card>
   );
