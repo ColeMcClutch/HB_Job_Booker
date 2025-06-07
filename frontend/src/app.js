@@ -9,6 +9,8 @@ import JobBoardPage from './pages/JobBoardPage';
 import PosterDashboard from './pages/PosterDashboard';
 import JobDetailPage from './pages/JobDetailPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import InterestedJobsPage from './pages/InterestedJobsPage';
+
 
 const App = () => {
   return (
@@ -35,6 +37,15 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/interested"
+            element={
+              <ProtectedRoute role="viewer">
+              <InterestedJobsPage />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
       </Router>
     </AuthProvider>
