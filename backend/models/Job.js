@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'interestedUsers',
         foreignKey: 'jobId'
       });
+
     };
   
     return Job;
