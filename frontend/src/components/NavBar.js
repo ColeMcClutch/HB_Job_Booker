@@ -20,9 +20,26 @@ const Navbar = () => {
             HB Job Booker
           </Link>
         </Typography>
+
         {user ? (
           <>
             <Typography sx={{ marginRight: 2 }}>{user.username}</Typography>
+
+            {/* ✅ Show this only for posters */}
+            {user.role === 'poster' && (
+              <Button color="inherit" component={Link} to="/poster">
+                My Jobs
+              </Button>
+            )}
+
+            {/* ✅ Show this only for viewers */}
+            {user.role === 'viewer' && (
+              <Button color="inherit" component={Link} to="/interested">
+                Interested
+              </Button>
+            )}
+
+
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </>
         ) : (
