@@ -30,10 +30,28 @@ const interest = async (id, token) => {
   });
 };
 
+const getInterested = async (token) => {
+  const res = await axios.get(`${API}/interested`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data;
+};
+
+const uninterest = async (id, token) => {
+  const res = await axios.delete(`${API}/jobs/${id}/interest`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data;
+};
+
+
+
 export default {
   getAll,
   getOne,
   create,
   delete: deleteJob,
-  interest
+  interest,
+  getInterested,
+  uninterest
 };
