@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
+//Routing on the navigate bar and Login controls
 const ProtectedRoute = ({ children, role }) => {
   const { user } = useContext(AuthContext);
 

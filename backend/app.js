@@ -1,3 +1,4 @@
+//beginning establishing connections
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -16,10 +17,11 @@ app.use('/api', jobRoutes);
 
 const PORT = process.env.PORT || 3000;
 
+//Make sure the tables and database are running
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ alter: true }); // ✅ ensure tables are created/updated
+    await sequelize.sync({ alter: true }); 
     console.log('Database connected');
     console.log(`Server running on http://localhost:${PORT}`);
   } catch (err) {

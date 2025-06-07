@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+//Authenticate user and authorization
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -20,6 +21,7 @@ const authenticate = (req, res, next) => {
 
 module.exports = authenticate;
 
+//Authorize function
 const authorize = (role) => {
   return (req, res, next) => {
     if (req.user.role !== role) {

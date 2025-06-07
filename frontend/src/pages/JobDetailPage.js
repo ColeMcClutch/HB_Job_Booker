@@ -4,6 +4,7 @@ import jobService from '../services/jobService';
 import { Container, Typography, Button } from '@mui/material';
 import { AuthContext } from '../context/AuthContext';
 
+//Details about a job seen here
 const JobDetailPage = () => {
   const { id } = useParams();
   const { user, token } = useContext(AuthContext);
@@ -25,6 +26,7 @@ const JobDetailPage = () => {
 
   if (!job) return <p>Loading...</p>;
 
+  //Visual elements
   return (
     <Container>
       <Typography variant="h4">{job.summary}</Typography>

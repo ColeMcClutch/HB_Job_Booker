@@ -28,9 +28,10 @@ router.post('/jobs/:id/interest', authenticate, authorize('viewer'), expressInte
 // Poster: See interested users
 router.get('/jobs/:id/interested', authenticate, authorize('poster'), getInterestedUsers);
 
-
+// Poster: See Interested Jobs
 router.get('/interested', authenticate, getInterestedJobs);
 
+//Delete Jobs from Interested Tab
 router.delete('/jobs/:id/interest', authenticate, removeInterest);
 
 

@@ -1,3 +1,4 @@
+//Imports
 import React, { useState, useEffect, useContext } from 'react';
 import {
   Container,
@@ -10,6 +11,7 @@ import jobService from '../services/jobService';
 import JobCard from '../components/JobCard';
 import { AuthContext } from '../context/AuthContext';
 
+//Create dashboard
 const PosterDashboard = () => {
   const { token } = useContext(AuthContext);
   const [form, setForm] = useState({ summary: '', body: '' });
@@ -20,7 +22,7 @@ const PosterDashboard = () => {
     const currentUserId = JSON.parse(atob(token.split('.')[1])).id;
     setJobs(all.filter(j => j.poster?.id === currentUserId));
   };
-
+  //Handle changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -32,6 +34,7 @@ const PosterDashboard = () => {
     loadJobs();
   };
 
+  //Handle deletion of job
   const handleDelete = async (id) => {
     const confirm = window.confirm('Are you sure you want to delete this job?');
     if (confirm) {
@@ -44,6 +47,7 @@ const PosterDashboard = () => {
     loadJobs();
   }, []);
 
+  //visual elements
   return (
     <Container>
       <Typography variant="h4" gutterBottom>Your Posted Jobs</Typography>

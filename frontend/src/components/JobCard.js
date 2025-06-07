@@ -1,3 +1,4 @@
+//Job cards
 import React from 'react';
 import { Card, CardContent, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ const JobCard = ({ job, showInterestButton, onExpressInterest, children }) => {
           View Details
         </Button>
 
-        {/* ✅ This will render the Delete button or any additional UI */}
+        {/* Render the Delete button  */}
         {children}
       </CardContent>
     </Card>

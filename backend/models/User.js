@@ -1,5 +1,4 @@
-// /backend/models/User.js
-
+//Establish the user role
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
       username: {
@@ -26,14 +25,14 @@ module.exports = (sequelize, DataTypes) => {
     });
   
     User.associate = (models) => {
-      // One-to-many: Posters -> Jobs
+      // One-to-many: A poster to their jobs
       User.hasMany(models.Job, {
         foreignKey: 'userId',
         as: 'postedJobs',
         onDelete: 'CASCADE'
       });
   
-      // Many-to-many: Viewers <-> Jobs via Interest
+      // Many-to-many: Viewers connect to Jobs through the interested connectection
       User.belongsToMany(models.Job, {
         through: 'Interest',
         as: 'interestedJobs',

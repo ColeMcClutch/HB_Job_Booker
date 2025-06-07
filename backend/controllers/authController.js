@@ -1,5 +1,4 @@
-// /backend/controllers/authController.js
-
+//Controller for authentication
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -10,7 +9,7 @@ const register = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
 
-    // Basic validation
+    //  validation
     if (!username || !email || !password || !role) {
       return res.status(400).json({ message: 'All fields are required.' });
     }
@@ -24,7 +23,7 @@ const register = async (req, res) => {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
+    // Create a user
     const user = await User.create({
       username,
       email,

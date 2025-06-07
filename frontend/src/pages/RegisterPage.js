@@ -3,6 +3,7 @@ import { TextField, Button, Container, Typography, MenuItem } from '@mui/materia
 import authService from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 
+//Functions for user registration
 const RegisterPage = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '', role: 'viewer' });
   const [error, setError] = useState('');
@@ -10,6 +11,7 @@ const RegisterPage = () => {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  //Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -21,6 +23,7 @@ const RegisterPage = () => {
   };
 
   return (
+    //Visual elements
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>Register</Typography>
       <form onSubmit={handleSubmit}>

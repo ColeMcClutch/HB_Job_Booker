@@ -1,5 +1,4 @@
-// /backend/models/Job.js
-
+//Establish the job object
 module.exports = (sequelize, DataTypes) => {
     const Job = sequelize.define('Job', {
       summary: {
@@ -17,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
     });
   
     Job.associate = (models) => {
-      // Job belongs to a single Poster (User)
+      // Job belongs to specific user with poster role
       Job.belongsTo(models.User, {
         foreignKey: 'userId',
         as: 'poster',
         onDelete: 'CASCADE'
       });
   
-      // Job has many interested users (Viewers)
+      // Job has many interested users with the viewer role
       Job.belongsToMany(models.User, {
         through: 'Interest',
         as: 'interestedUsers',

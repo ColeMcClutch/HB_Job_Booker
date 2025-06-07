@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+//Begin building API
 const API = process.env.REACT_APP_API_URL;
 
+//Async commands
 const getAll = async () => {
   const res = await axios.get(`${API}/jobs`);
   return res.data;
@@ -44,7 +46,7 @@ const uninterest = async (id, token) => {
   return res.data;
 };
 
-
+//Export
 
 export default {
   getAll,

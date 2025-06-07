@@ -1,5 +1,4 @@
-// /backend/controllers/jobController.js
-
+//Controller for jobs
 const { Job, User } = require('../models');
 const { Op } = require('sequelize');
 
@@ -15,7 +14,7 @@ const createJob = async (req, res) => {
     const job = await Job.create({
       summary,
       body,
-      userId: req.user.id // comes from JWT middleware
+      userId: req.user.id 
     });
 
     res.status(201).json({ message: 'Job created.', job });
@@ -25,6 +24,7 @@ const createJob = async (req, res) => {
   }
 };
 
+//Retrieve all the currently active jobs
 const getAllActiveJobs = async (req, res) => {
   try {
     const twoMonthsAgo = new Date();
@@ -118,6 +118,7 @@ const getInterestedUsers = async (req, res) => {
   }
 };
 
+//Retrieve all jobs interested by the user
 const getInterestedJobs = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -147,6 +148,7 @@ const getInterestedJobs = async (req, res) => {
   }
 };
 
+//Remove interest jobs by the user
 const removeInterest = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -159,7 +161,7 @@ const removeInterest = async (req, res) => {
       return res.status(404).json({ message: 'Job or user not found' });
     }
 
-    await job.removeInterestedUser(user); // uses `as: 'interestedUsers'` alias
+    await job.removeInterestedUser(user); 
     res.json({ message: 'Interest removed' });
   } catch (error) {
     console.error('Error removing interest:', error);

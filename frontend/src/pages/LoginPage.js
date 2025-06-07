@@ -3,6 +3,7 @@ import { TextField, Button, Container, Typography } from '@mui/material';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+//Login paghe
 const LoginPage = () => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
+  //Submission controls
   const handleSubmit = async (e) => {
     e.preventDefault();
     const success = await login(email, password);
@@ -20,6 +22,7 @@ const LoginPage = () => {
     }
   };
 
+  //Visual elements
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>Login</Typography>
