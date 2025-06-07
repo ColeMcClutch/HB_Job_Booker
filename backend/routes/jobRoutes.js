@@ -1,5 +1,4 @@
 // /backend/routes/jobRoutes.js
-
 const express = require('express');
 const router = express.Router();
 const {
@@ -7,7 +6,9 @@ const {
   getAllActiveJobs,
   deleteJob,
   expressInterest,
-  getInterestedUsers
+  getInterestedUsers,
+  getInterestedJobs,
+  removeInterest,
 } = require('../controllers/jobController');
 
 const { authenticate, authorize } = require('../middleware/auth');
@@ -26,5 +27,11 @@ router.post('/jobs/:id/interest', authenticate, authorize('viewer'), expressInte
 
 // Poster: See interested users
 router.get('/jobs/:id/interested', authenticate, authorize('poster'), getInterestedUsers);
+
+
+router.get('/interested', authenticate, getInterestedJobs);
+
+router.delete('/jobs/:id/interest', authenticate, removeInterest);
+
 
 module.exports = router;
