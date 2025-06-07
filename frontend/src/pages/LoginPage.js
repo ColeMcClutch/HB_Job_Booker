@@ -30,7 +30,20 @@ const LoginPage = () => {
         <TextField label="Email" fullWidth margin="normal" value={email} onChange={e => setEmail(e.target.value)} />
         <TextField label="Password" type="password" fullWidth margin="normal" value={password} onChange={e => setPassword(e.target.value)} />
         {error && <Typography color="error">{error}</Typography>}
-        <Button variant="contained" color="primary" type="submit" sx={{ mt: 2 }}>Login</Button>
+        <Button
+        variant="contained"
+        type="submit"
+        sx={{
+          mt: 2,
+          backgroundColor: 'red',
+          '&:hover': {
+            backgroundColor: '#b30000'
+          }
+        }}
+      >
+        Login
+      </Button>
+
       </form>
     </Container>
   );

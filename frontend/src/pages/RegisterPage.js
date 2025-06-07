@@ -35,7 +35,20 @@ const RegisterPage = () => {
           <MenuItem value="poster">Poster</MenuItem>
         </TextField>
         {error && <Typography color="error">{error}</Typography>}
-        <Button variant="contained" color="primary" type="submit" sx={{ mt: 2 }}>Register</Button>
+        <Button
+        variant="contained"
+        type="submit"
+        sx={{
+          mt: 2,
+          backgroundColor: 'red',
+          '&:hover': {
+            backgroundColor: '#b30000'
+          }
+        }}
+      >
+        Register
+      </Button>
+
       </form>
     </Container>
   );

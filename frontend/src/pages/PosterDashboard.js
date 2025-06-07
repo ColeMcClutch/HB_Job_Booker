@@ -72,9 +72,14 @@ const PosterDashboard = () => {
           value={form.body}
           onChange={handleChange}
         />
-        <Button type="submit" variant="contained">
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ backgroundColor: 'red', '&:hover': { backgroundColor: '#b30000' } }}
+        >
           Post Job
         </Button>
+
       </form>
 
       {/* Job list with interested users and delete buttons */}

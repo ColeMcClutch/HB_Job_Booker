@@ -34,7 +34,20 @@ const JobDetailPage = () => {
       <Typography sx={{ mt: 2 }}>{job.body}</Typography>
 
       {user?.role === 'viewer' && (
-        <Button sx={{ mt: 2 }} variant="contained" onClick={handleInterest}>I'm Interested</Button>
+        <Button
+        variant="contained"
+        type="submit"
+        sx={{
+          mt: 2,
+          backgroundColor: 'red',
+          '&:hover': {
+            backgroundColor: '#b30000'
+          }
+        }}
+      >
+        I'm Interested
+      </Button>
+
       )}
 
       {message && <Typography color="primary" sx={{ mt: 1 }}>{message}</Typography>}

@@ -14,14 +14,15 @@ const JobCard = ({ job, showInterestButton, onExpressInterest, children }) => {
         <Typography sx={{ marginTop: 1 }}>{job.body}</Typography>
 
         {showInterestButton && (
-          <Button
-            variant="contained"
-            sx={{ marginTop: 2 }}
-            onClick={() => onExpressInterest(job.id)}
-          >
-            I'm Interested
-          </Button>
-        )}
+        <Button
+          variant="contained"
+          sx={{ marginTop: 2, backgroundColor: 'red', '&:hover': { backgroundColor: '#b30000' } }}
+          onClick={() => onExpressInterest(job.id)}
+        >
+          I'm Interested
+        </Button>
+      )}
+
 
         <Button
           component={Link}
