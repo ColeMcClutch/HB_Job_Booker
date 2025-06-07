@@ -25,7 +25,6 @@ const createJob = async (req, res) => {
   }
 };
 
-// Get all active jobs (within 2 months)
 const getAllActiveJobs = async (req, res) => {
   try {
     const twoMonthsAgo = new Date();
@@ -39,7 +38,17 @@ const getAllActiveJobs = async (req, res) => {
       },
       order: [['postedDate', 'DESC']],
       include: [
-        { model: User, as: 'poster', attributes: ['id', 'username', 'email'] }
+        {
+          model: User,
+          as: 'poster',
+          attributes: ['id', 'username', 'email']
+        },
+        {
+          model: User,
+          as: 'interestedUsers',
+          attributes: ['id', 'username', 'email'],
+          through: { attributes: [] }
+        }
       ]
     });
 
@@ -49,6 +58,7 @@ const getAllActiveJobs = async (req, res) => {
     res.status(500).json({ message: 'Internal server error.' });
   }
 };
+
 
 // Delete a job (only by its poster)
 const deleteJob = async (req, res) => {
@@ -80,7 +90,7 @@ const expressInterest = async (req, res) => {
     }
 
     const user = await User.findByPk(req.user.id);
-    await job.addInterestedUsers(user);
+    await job.addInterestedUser(user);
 
     res.json({ message: 'Interest recorded.' });
   } catch (error) {
@@ -108,10 +118,63 @@ const getInterestedUsers = async (req, res) => {
   }
 };
 
+const getInterestedJobs = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const jobs = await Job.findAll({
+      include: [
+        {
+          model: User,
+          as: 'interestedUsers',
+          where: { id: userId },
+          attributes: [],
+          through: { attributes: [] }
+        },
+        {
+          model: User,
+          as: 'poster',
+          attributes: ['id', 'username']
+        }
+      ],
+      order: [['postedDate', 'DESC']]
+    });
+
+    res.json(jobs);
+  } catch (err) {
+    console.error('Error fetching interested jobs:', err);
+    res.status(500).json({ message: 'Failed to load interested jobs.' });
+  }
+};
+
+const removeInterest = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const jobId = req.params.id;
+
+    const job = await Job.findByPk(jobId);
+    const user = await User.findByPk(userId);
+
+    if (!job || !user) {
+      return res.status(404).json({ message: 'Job or user not found' });
+    }
+
+    await job.removeInterestedUser(user); // uses `as: 'interestedUsers'` alias
+    res.json({ message: 'Interest removed' });
+  } catch (error) {
+    console.error('Error removing interest:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
 module.exports = {
   createJob,
   getAllActiveJobs,
   deleteJob,
   expressInterest,
-  getInterestedUsers
+  getInterestedUsers,
+  getInterestedJobs,
+  removeInterest
 };
