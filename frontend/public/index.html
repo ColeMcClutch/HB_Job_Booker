@@ -3,23 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#1976d2" />
-    <meta name="description" content="Job booking platform built with React and Node.js" />
-    
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- MUI Roboto font (recommended for Material UI design) -->
+    <!-- Title and Branding -->
+    <title>HB Job Booker</title>
+    <meta name="description" content="A job posting and matching platform for Handy Bros" />
+    <meta name="theme-color" content="#1976d2" />
+
+    <!-- Favicon & Manifest -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Fonts for Material UI (Roboto) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <title>HB Job Booker</title>
+    <!-- Basic Styling for graceful fallback -->
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .no-js-message {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 90%;
+      }
+    </style>
   </head>
+
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div class="no-js-message">
+        <h1>JavaScript Required</h1>
+        <p>Please enable JavaScript to use the HB Job Booker app.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
